@@ -6,7 +6,13 @@ import sys
 import numpy as np
 import tensorflow as tf
 
-
+from cfgs import additive_1x2_uniform_config, unit_1x2_uniform_23_config, additive_2x2_uniform_config, \
+    additive_2x3_uniform_config, additive_3x10_uniform_config, additive_5x10_uniform_config, \
+    CA_asym_uniform_12_15_config, unit_2x2_uniform_config, additive_1x2_uniform_04_03_config, \
+    additive_1x10_uniform_config, unit_1x2_uniform_config, additive_1x2_uniform_triangle_config, \
+    additive_1x2_uniform_416_47_config, CA_sym_uniform_12_config
+from data import uniform_01_generator, uniform_23_generator, CA_asym_uniform_12_15_generator, uniform_04_03_generator, \
+    uniform_triangle_01_generator, uniform_416_47_generator, CA_sym_uniform_12_generator
 from nets import *
 from cfgs import *
 from data import *

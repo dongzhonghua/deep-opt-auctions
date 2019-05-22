@@ -47,7 +47,7 @@ def activation_summary(x):
     """ 
     Helper to create summaries for activations.
     Creates a summary that provides a histogram of activations.
-    Creates a summary that measures the sparsity of activations.
+    Creates a summary that measures the sparsityœ° Ë∂» of activations.
     Args:
         x: Tensor
     """

@@ -45,7 +45,7 @@ __C.train.seed = 42
 # training form restore_iter [needs saved model]
 __C.train.restore_iter = 0
 # max iters to train 
-__C.train.max_iter = 400000
+__C.train.max_iter = 10000
 # Learning rate of network param updates
 __C.train.learning_rate = 1e-3
 # Regularization
@@ -111,7 +111,7 @@ __C.test = edict()
 # Test Seed
 __C.test.seed = 100
 # Model to be evaluated
-__C.test.restore_iter = 400000
+__C.test.restore_iter = 10000
 # Number of misreports
 __C.test.num_misreports = 1000
 # Number of steps for misreport computation

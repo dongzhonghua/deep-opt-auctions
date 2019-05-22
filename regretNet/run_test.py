@@ -1,17 +1,22 @@
+
+
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
 import sys
-import numpy as np
-import tensorflow as tf
 
-
-from nets import *
-from cfgs import *
-from data import *
+from cfgs import additive_1x2_uniform_config, unit_1x2_uniform_23_config, additive_2x2_uniform_config, \
+    additive_2x3_uniform_config, additive_3x10_uniform_config, additive_5x10_uniform_config, \
+    CA_asym_uniform_12_15_config, CA_sym_uniform_12_config, additive_1x2_uniform_416_47_config, \
+    additive_1x2_uniform_triangle_config, unit_1x2_uniform_config, additive_1x10_uniform_config, \
+    additive_1x2_uniform_04_03_config, unit_2x2_uniform_config
 from clip_ops.clip_ops import *
-from trainer import *
+from data import uniform_01_generator, uniform_23_generator, CA_asym_uniform_12_15_generator, \
+    CA_sym_uniform_12_generator, uniform_416_47_generator, uniform_triangle_01_generator, uniform_04_03_generator
+from nets import additive_net, unit_net, ca2x2_net
+from trainer import trainer, ca12_2x2
 
 print("Setting: %s"%(sys.argv[1]))
 setting = sys.argv[1]
@@ -47,6 +52,7 @@ elif setting == "additive_2x3_uniform":
 elif setting == "additive_3x10_uniform":
     cfg = additive_3x10_uniform_config.cfg
     Net = additive_net.Net
+
     Generator = uniform_01_generator.Generator
     clip_op_lambda = (lambda x: clip_op_01(x))
     Trainer = trainer.Trainer
