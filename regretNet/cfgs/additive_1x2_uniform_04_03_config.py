@@ -45,7 +45,7 @@ __C.train.seed = 42
 # training form restore_iter [needs saved model]
 __C.train.restore_iter = 0
 # max iters to train 
-__C.train.max_iter = 400000
+__C.train.max_iter = 40000
 # Learning rate of network param updates
 __C.train.learning_rate = 1e-3
 # Regularization

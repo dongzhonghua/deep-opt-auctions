@@ -16,7 +16,8 @@ __C.dir_name = os.path.join("experiments", "additive_5x10_uniform")
 
 # Auction params
 __C.num_agents = 5
-__C.num_items = 10
+
+__C.num_items = 5
 __C.distribution_type = "uniform"
 __C.agent_type = "additive"
 
@@ -44,7 +45,7 @@ __C.train.seed = 42 # Random seed
 # training form restore_iter [needs saved model]
 __C.train.restore_iter = 0
 # max iters to train 
-__C.train.max_iter = 400000
+__C.train.max_iter = 6000
 # Learning rate of network param updates
 __C.train.learning_rate = 1e-3
 # Regularization
@@ -54,7 +55,7 @@ __C.train.wd = None
 # Choose between fixed and online. If online, set adv_reuse to False
 __C.train.data = "fixed"
 # Number of batches
-__C.train.num_batches = 5000
+__C.train.num_batches = 500
 # Train batch size
 __C.train.batch_size = 128
 
@@ -86,9 +87,9 @@ __C.train.up_op_frequency = 100000
 # Number of models to store on disk
 __C.train.max_to_keep = 10
 # Frequency at which models are saved
-__C.train.save_iter = 50000 
+__C.train.save_iter = 100
 # Train stats print frequency
-__C.train.print_iter = 1000
+__C.train.print_iter = 1
    
 
 """ Validation params """

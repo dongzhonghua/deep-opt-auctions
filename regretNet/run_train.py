@@ -5,7 +5,7 @@ from __future__ import print_function
 import sys
 
 from cfgs import additive_1x2_uniform_config, unit_1x2_uniform_23_config, additive_2x2_uniform_config, \
-    additive_2x3_uniform_config, additive_3x10_uniform_config, additive_5x10_uniform_config, \
+    additive_2x4_uniform_config, additive_3x10_uniform_config, additive_5x10_uniform_config, \
     CA_asym_uniform_12_15_config, CA_sym_uniform_12_config, additive_1x2_uniform_416_47_config, \
     additive_1x2_uniform_triangle_config, unit_1x2_uniform_config, additive_1x10_uniform_config, \
     additive_1x2_uniform_04_03_config, unit_2x2_uniform_config
@@ -39,8 +39,8 @@ elif setting == "additive_2x2_uniform":
     clip_op_lambda = (lambda x: clip_op_01(x))
     Trainer = trainer.Trainer
 
-elif setting == "additive_2x3_uniform":
-    cfg = additive_2x3_uniform_config.cfg
+elif setting == "additive_2x4_uniform":
+    cfg = additive_2x4_uniform_config.cfg
     Net = additive_net.Net
     Generator = uniform_01_generator.Generator
     clip_op_lambda = (lambda x: clip_op_01(x))

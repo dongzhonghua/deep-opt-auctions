@@ -15,8 +15,8 @@ cfg = __C
 __C.dir_name = os.path.join("experiments", "additive_1x2_uniform")
 
 # Auction params
-__C.num_agents = 1
-__C.num_items = 2
+__C.num_agents = 5
+__C.num_items = 1
 __C.distribution_type = "uniform"
 __C.agent_type = "additive"
 
@@ -45,7 +45,7 @@ __C.train.seed = 42
 # training form restore_iter [needs saved model]
 __C.train.restore_iter = 0
 # max iters to train 
-__C.train.max_iter = 10000
+__C.train.max_iter = 6000
 # Learning rate of network param updates
 __C.train.learning_rate = 1e-3
 # Regularization
@@ -87,9 +87,9 @@ __C.train.up_op_frequency = 10000
 # Number of models to store on disk
 __C.train.max_to_keep = 25
 # Frequency at which models are saved-
-__C.train.save_iter = 20000 
+__C.train.save_iter = 3000
 # Train stats print frequency
-__C.train.print_iter = 1000
+__C.train.print_iter = 1
    
 
 """ Validation params """

@@ -7,7 +7,7 @@ import numpy as np
 import tensorflow as tf
 
 from cfgs import additive_1x2_uniform_config, unit_1x2_uniform_23_config, additive_2x2_uniform_config, \
-    additive_2x3_uniform_config, additive_3x10_uniform_config, additive_5x10_uniform_config, \
+    additive_2x4_uniform_config, additive_3x10_uniform_config, additive_5x10_uniform_config, \
     CA_asym_uniform_12_15_config, unit_2x2_uniform_config, additive_1x2_uniform_04_03_config, \
     additive_1x10_uniform_config, unit_1x2_uniform_config, additive_1x2_uniform_triangle_config, \
     additive_1x2_uniform_416_47_config, CA_sym_uniform_12_config
@@ -38,8 +38,8 @@ elif setting == "additive_2x2_uniform":
     Generator = uniform_01_generator.Generator
     print("(VVCA, AMA): ")
 
-elif setting == "additive_2x3_uniform":
-    cfg = additive_2x3_uniform_config.cfg
+elif setting == "additive_2x4_uniform":
+    cfg = additive_2x4_uniform_config.cfg
     Generator = uniform_01_generator.Generator
     print("(I-My, B-My): ")
 

@@ -15,7 +15,8 @@ class Trainer(object):
     def __init__(self, config, mode, net, clip_op_lambda):
         self.config = config
         self.mode = mode
-        
+        self.data={"Revenue":[],"Regret":[],"Reg_Loss":[],"Net_Loss":[]}
+
         # Create output-dir
         if not os.path.exists(self.config.dir_name): os.mkdir(self.config.dir_name)
 
@@ -76,6 +77,7 @@ class Trainer(object):
         """
         return tf.reduce_mean(tf.reduce_sum(pay, axis=-1))
 
+    # 效用函数，分配几率乘上估计减去支付的钱
     def compute_utility(self, x, alloc, pay):
         """ Given input valuation (x), payment (pay) and allocation (alloc), computes utility
             Input params:
@@ -209,6 +211,7 @@ class Trainer(object):
             tf.summary.scalar('w_rgt_mean', tf.reduce_mean(self.w_rgt))
             if len(reg_losses) > 0: tf.summary.scalar('reg_loss', reg_loss_mean)
 
+
             self.merged = tf.summary.merge_all()
             self.saver = tf.train.Saver(max_to_keep = self.config.train.max_to_keep)
         
@@ -229,7 +232,7 @@ class Trainer(object):
         # Helper ops post GD steps
         self.assign_op = tf.assign(self.adv_var, self.adv_init)
         self.get_clip_op(self.adv_var)
-        
+
     def train(self, generator):
         """
         Runs training
@@ -255,7 +258,9 @@ class Trainer(object):
              
             # Get a mini-batch
             X, ADV, perm = next(self.train_gen.gen_func)
-                
+            # print("---------------------------x-----------------------------------")
+            # print(sum(X)/len(X))
+            # print("---------------------------x-----------------------------------")
             if iter == 0: sess.run(self.lagrange_update, feed_dict = {self.x : X})
  
 
@@ -300,7 +305,22 @@ class Trainer(object):
                 summary = sess.run(self.merged, feed_dict = {self.x: X})
                 train_writer.add_summary(summary, iter)
                 metric_vals = sess.run(self.metrics, feed_dict = {self.x: X})
+
                 fmt_vals = tuple([ item for tup in zip(self.metric_names, metric_vals) for item in tup ])
+                # data={"Revenue":[],"Regret":[],"Reg_Loss":[],"Net_Loss":[]}
+                self.data["Revenue"].append(fmt_vals[1])
+                self.data["Regret"].append(fmt_vals[3])
+                self.data["Reg_Loss"].append(fmt_vals[5])
+                self.data["Net_Loss"].append(fmt_vals[9])
+                # print(self.data)
+                if(iter==6000):
+                    filename = "{}x{}data.json".format(self.config.num_agents, self.config.num_items)
+                    with open(filename,"w") as f:
+                        f.write("{}".format(self.data))
+                        print("--------------------------------------------------------------")
+                        print("{}".format(self.data))
+                        print("--------------------------------------------------------------")
+
                 log_str = "TRAIN-BATCH Iter: %d, t = %.4f"%(iter, time_elapsed) + ", %s: %.6f"*len(self.metric_names)%fmt_vals
                 self.logger.info(log_str)
 
@@ -380,7 +400,3 @@ class Trainer(object):
         if self.config.test.save_output:
             np.save(os.path.join(self.config.dir_name, 'alloc_tst_' + str(iter)), alloc_tst)
             np.save(os.path.join(self.config.dir_name, 'pay_tst_' + str(iter)), pay_tst)
-            
-        
-        
-        

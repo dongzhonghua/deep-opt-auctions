@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -46,7 +48,8 @@ class Net(BaseNet):
 
         with tf.variable_scope("alloc"):
 
-            # Input Layer
+            # Input Layer  name, shape, dtype = tf.float32, initializer = None, wd = None, summaries = False, trainable = True
+
             self.w_a.append(create_var("w_a_0", [num_in, num_a_hidden_units], initializer=w_init, wd=wd))
 
             # Hidden Layers
@@ -112,7 +115,11 @@ class Net(BaseNet):
 
         # Payment Network
         p = tf.matmul(x_in, self.w_p[0]) + self.b_p[0]
+
+            #relu
         p = self.activation(p, 'pay_act_0')
+
+            #画图的
         activation_summary(p)
 
         for i in range(1, self.config.net.num_p_layers - 1):

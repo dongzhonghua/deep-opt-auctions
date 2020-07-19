@@ -16,7 +16,7 @@ __C.dir_name = os.path.join("experiments", "additive_2x3_uniform")
 
 # Auction params
 __C.num_agents = 2
-__C.num_items = 3
+__C.num_items = 4
 __C.distribution_type = "uniform"
 __C.agent_type = "additive"
 
@@ -45,7 +45,7 @@ __C.train.seed = 42
 # training form restore_iter [needs saved model]
 __C.train.restore_iter = 0
 # max iters to train 
-__C.train.max_iter = 400000
+__C.train.max_iter = 10000
 # Learning rate of network param updates
 __C.train.learning_rate = 1e-3
 # Regularization
@@ -55,7 +55,7 @@ __C.train.wd = None
 # Choose between fixed and online. If online, set adv_reuse to False
 __C.train.data = "fixed"
 # Number of batches
-__C.train.num_batches = 5000
+__C.train.num_batches = 500
 # Train batch size
 __C.train.batch_size = 128
 
@@ -63,6 +63,7 @@ __C.train.batch_size = 128
 """ Train-misreport params """
 # Cache-misreports after misreport optimization
 __C.train.adv_reuse = True
+
 # Number of misreport initialization for training
 __C.train.num_misreports = 1
 # Number of steps for misreport computation
@@ -80,16 +81,16 @@ __C.train.update_frequency = 100
 # Value by which update rate is incremented
 __C.train.up_op_add = 10.0
 # Frequency at which update rate is incremented
-__C.train.up_op_frequency = 10000
+__C.train.up_op_frequency = 1000
 
 
 """ train summary and save params"""
 # Number of models to store on disk
 __C.train.max_to_keep = 10
 # Frequency at which models are saved
-__C.train.save_iter = 50000 
+__C.train.save_iter = 50
 # Train stats print frequency
-__C.train.print_iter = 1000
+__C.train.print_iter = 1
    
 
 """ Validation params """
@@ -101,7 +102,7 @@ __C.val.gd_lr = 0.1
 # Number of validation batches
 __C.val.num_batches = 20
 # Frequency at which validation is performed
-__C.val.print_iter = 10000
+__C.val.print_iter = 1000
 # Validation data frequency
 __C.val.data = "fixed"
 
